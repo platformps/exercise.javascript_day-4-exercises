@@ -1,11 +1,25 @@
 var animate;
 const buttons = document.querySelectorAll("button");
 for (var i = 0; i < buttons.length; i++) {
+
     let currentButton = buttons[i];
     currentButton.addEventListener('click', () => {
         var direction = event.target.id;
-        animate = setInterval(function () { moveImage(direction); }, 60);
+        let start = Date.now();
+
+        animate = setInterval(function () {
+            moveImage(direction);
+
+            let timepassed = Date.now() - start;
+            if (timepassed >= 3000) {
+                clearInterval(animate);
+            }
+
+        }, 100);
+
     });
+    // animateStop = setTimeout(() => { clearInterval(animate); }, 3000);
+
     document.addEventListener('mouseup', function () { clearInterval(animate); });
 
 
@@ -16,6 +30,8 @@ function moveImage(direction) {
     let imgObjStyle = imgObj.style;
     let topVal = parseInt(imgObjStyle.top, 10);
     let leftVal = parseInt(imgObjStyle.left, 10);
+
+
 
 
 
