@@ -46,9 +46,11 @@ function moveImage(direction) {
     if(direction === 'KeyS') {
         imgObjStyle.top = (topVal + 30) + "px";
     }
+    var animate = setTimeout(function(){moveImage(direction)}, 20);
 }
 
 function init() {
+
     imgObj = document.getElementById('myImage');
     imgObj.style.position = 'relative';
     imgObj.style.left = '0px';
@@ -60,8 +62,8 @@ function init() {
     document.addEventListener('keyup', () =>{
         backToNormal(document.getElementById(event.code))
     });
-  
 }
+
 
 
 window.onload = init;
