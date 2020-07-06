@@ -1,16 +1,23 @@
 const buttons = document.querySelectorAll('button');
 for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
+    currentButton.addEventListener('keydown' ,() =>{
+        changeToCoral(event.code);
+        moveImage(event.code);
+    });
+    currentButton.addEventListener('keyup' ,() =>{
+        backToNormal(event.code);
+    });
     currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
     currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', ()=> moveImage(event.target.id))
+    currentButton.addEventListener('click', () => moveImage(event.target.id))
 }
 
 function changeToCoral(eventTarget) {
     eventTarget.style.backgroundColor = "coral";
 }
 
-function changeToWhite() {
+function changeToWhite(eventTarget) {
     eventTarget.style.backgroundColor = "white";
 }
 
@@ -46,6 +53,14 @@ function init() {
     imgObj.style.position = 'relative';
     imgObj.style.left = '0px';
     imgObj.style.top = '0px';
+    document.addEventListener('keydown', () => {
+        changeToCoral(document.getElementById(event.code));
+        moveImage(event.code);
+    });
+    document.addEventListener('keyup', () =>{
+        backToNormal(document.getElementById(event.code))
+    });
+  
 }
 
 
