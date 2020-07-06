@@ -1,4 +1,5 @@
 const buttons = document.querySelectorAll("button");
+let counter = 0;
 //const buttons = document.querySelectorAll(".inputButton");
 for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
@@ -6,8 +7,7 @@ for(var i=0; i<buttons.length;i++) {
     currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
    // currentButton.addEventListener('click', ()=> moveImage(event.target.id))
    currentButton.addEventListener('click', function() { 
-     //direction = event.target.id;
-     direction = event.code;
+     direction = event.target.id;
      animate = setInterval(function() { moveImage(direction);}, 60);
     });
     currentButton.addEventListener('mouseup', function(){clearInterval(animate);});
@@ -35,9 +35,10 @@ function backToNormal(eventTarget) {
 }
 
 function moveImage(direction) {
+    clearTimeout(animate);
+    
     let imgObjStyle = imgObj.style;
     let imgObjStyleDirection;
-
     if(direction === 'KeyD') {        
         imgObjStyleDirection = imgObjStyle.left;
         //imgObjStyleDirection = parseInt(imgObjStyleDirection) + 10 + 'px';
@@ -60,7 +61,7 @@ function moveImage(direction) {
         imgObjStyleDirection = imgObjStyle.top;
         imgObjStyle.top = parseInt(imgObjStyleDirection) + 10 + 'px';
     }
-
+    animate = setInterval(function() { moveImage(direction);}, 60);
     //animate = setTimeout(function(){moveImage(direction)}, 20);
 }
 
