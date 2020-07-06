@@ -19,26 +19,34 @@ function backToNormal(eventTarget) {
 }
 
 const AMOUNT_TO_MOVE = 10;
+var LAST_MOUSE_PRESS = null;
 
 function moveImage(direction) {
+    if(LAST_MOUSE_PRESS != null){
+        console.log(Date.now() - LAST_MOUSE_PRESS > 3000);
+        if(Date.now() - LAST_MOUSE_PRESS > 3000){
+            return;
+        }
+    }
+    LAST_MOUSE_PRESS = Date.now();
     let imgObjStyle = imgObj.style;
     var topVal = parseInt(imgObjStyle.top, 10);
     var leftVal = parseInt(imgObjStyle.left, 10);
-    let documentHeight = document.body.clientHeight;
-    let documentWidth = document.body.clientWidth;
+
+    //https://stackoverflow.com/questions/5484578/how-to-get-document-height-and-width-without-using-jquery
+    let documentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    let documentHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
 
     if (direction === 'KeyD') {
         let newValue = (leftVal + AMOUNT_TO_MOVE);
-        console.log(newValue);
-        console.log(documentHeight);
-        if(newValue < documentHeight){
+        if(newValue < documentWidth){
             imgObjStyle.left = (leftVal + AMOUNT_TO_MOVE) + "px";
         }
     }
 
     if (direction === 'KeyA') {
         let newValue = (leftVal - AMOUNT_TO_MOVE);
-        console.log(newValue);
         if(newValue > 0){
             imgObjStyle.left = (leftVal - AMOUNT_TO_MOVE) + "px";
         }
@@ -46,7 +54,6 @@ function moveImage(direction) {
 
     if (direction === 'KeyW') {
         let newValue = (topVal - AMOUNT_TO_MOVE);
-        console.log(newValue);
         if(newValue > 0){
             imgObjStyle.top = (topVal - AMOUNT_TO_MOVE) + "px";
         }
