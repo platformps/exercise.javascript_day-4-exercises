@@ -1,9 +1,9 @@
 const buttons = document.querySelectorAll("button");
-for(var i=0; i<buttons.length;i++) {
+for (var i = 0; i < buttons.length; i++) {
     let currentButton = buttons[i];
     currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
     currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', ()=> moveImage(event.target.id))
+    currentButton.addEventListener('click', () => moveImage(event.target.id))
 }
 
 function changeToCoral(eventTarget) {
@@ -15,7 +15,7 @@ function changeToWhite() {
 }
 
 function backToNormal(eventTarget) {
-    eventTarget.style.backgroundColor='';
+    eventTarget.style.backgroundColor = '';
 }
 
 function moveImage(direction) {
@@ -23,20 +23,20 @@ function moveImage(direction) {
     let topVal = parseInt(imgObjStyle.top, 10);
     let leftVal = parseInt(imgObjStyle.left, 10);
 
-    if(direction === 'KeyA') {
+    if (direction === 'KeyA') {
         imgObjStyle.left = (leftVal - 30) + "px";
-    } 
+    }
 
-    if(direction === 'KeyW') {
+    if (direction === 'KeyW') {
         imgObjStyle.top = (topVal - 30) + "px";
     }
 
-    if(direction === 'KeyD') {        
+    if (direction === 'KeyD') {
         imgObjStyle.left = (leftVal + 30) + "px";
     }
 
-    
-    if(direction === 'KeyS') {
+
+    if (direction === 'KeyS') {
         imgObjStyle.top = (topVal + 30) + "px";
     }
 }
