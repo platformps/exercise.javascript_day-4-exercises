@@ -20,22 +20,23 @@ function backToNormal(eventTarget) {
 
 function moveImage(direction) {
     let imgObjStyle = imgObj.style;
-    let imgObjStyleDirection;
-
-    if(direction === 'KeyD') {        
-        imgObj.style.left = parseInt(imgObj.style.left) + 10 + 'px';
-    }
+    let topVal = parseInt(imgObjStyle.top, 10);
+    let leftVal = parseInt(imgObjStyle.left, 10);
 
     if(direction === 'KeyA') {
-        imgObj.style.left = parseInt(imgObj.style.left) - 10 + 'px';
-    }
+        imgObjStyle.left = (leftVal - 30) + "px";
+    } 
 
     if(direction === 'KeyW') {
-        imgObj.style.left = parseInt(imgObj.style.left) - 10 + 'px';
+        imgObjStyle.top = (topVal - 30) + "px";
+    }
+
+    if(direction === 'KeyD') {        
+        imgObjStyle.left = (leftVal + 30) + "px";
     }
     
     if(direction === 'KeyS') {
-        imgObj.style.bottom = parseInt(imgObj.style.bottom) + 10 + 'px';
+        imgObjStyle.top = (topVal + 30) + "px";
     }
 }
 
