@@ -1,9 +1,11 @@
 const buttons = document.querySelectorAll("button");
+document.addEventListener('keydown',moveImage(event.target.id))
+document.addEventListener('keyup',moveImage(event.target.id))
 for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
-    currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
-    currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', ()=> moveImage(event.target.id))
+    currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));    //changes to coral with function
+    currentButton.addEventListener('mouseleave', () => backToNormal(event.target)); //changes to white using back to normal function
+    currentButton.addEventListener('click', ()=> moveImage(event.target.id))    //uses function moveImage to move the image.
 }
 
 function changeToCoral(eventTarget) {
@@ -20,28 +22,32 @@ function backToNormal(eventTarget) {
 
 function moveImage(direction) {
     let imgObjStyle = imgObj.style;
-    let imgObjStyleDirection;
+    var topVal = parseInt(imgObjStyle.top, 10);
+    var leftVal = parseInt(imgObjStyle.left, 10);
 
-    if(direction === 'KeyD') {        
-        imgObjStyleDirection = imgObjStyle.left;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) + 10 + 'px';
+    if(direction === "KeyD" ) {        
+        // imgObjStyleDirection = imgObjStyle.left;
+        // imgObjStyleDirection = parseInt(imgObjStyleDirection) + 10 + 'px';
+        imgObjStyle.left = (leftVal - 10) + "px";
     }
 
     if(direction === 'KeyA') {
-        imgObjStyleDirection = imgObjStyle.left;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) - 10 + 'px';
+        imgObjStyle.top = (topVal - 10) + "px";
     }
 
     if(direction === 'KeyW') {
-        imgObjStyleDirection = imgObjStyle.top;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) - 10 + 'px';
+        imgObjStyle.left = (leftVal + 10) + "px";
+
     }
 
     
     if(direction === 'KeyS') {
-        imgObjStyleDirection = imgObjStyle.top;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) + 10 + 'px';
+        imgObjStyle.top = (topVal + 10) + "px";
     }
+}
+function keyboardMove(evt)
+{
+
 }
 
 function init() {
@@ -49,6 +55,7 @@ function init() {
     imgObj.style.position = 'relative';
     imgObj.style.left = '0px';
     imgObj.style.top = '0px';
+    //document.addEventListener('keydown',moveImage(event.target.id))
 }
 
 
