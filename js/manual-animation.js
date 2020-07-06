@@ -1,10 +1,5 @@
 const buttons = document.querySelectorAll("button");
-for (var i = 0; i < buttons.length; i++) {
-    let currentButton = buttons[i];
-    currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
-    currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', () => moveImage(event.target.id))
-}
+
 
 function changeToCoral(eventTarget) {
     eventTarget.style.backgroundColor = "coral";
@@ -22,6 +17,7 @@ const AMOUNT_TO_MOVE = 10;
 var LAST_MOUSE_PRESS = null;
 
 function moveImage(direction) {
+    console.log("KEYCODE: "+direction);
     if(LAST_MOUSE_PRESS != null){
         console.log(Date.now() - LAST_MOUSE_PRESS > 3000);
         if(Date.now() - LAST_MOUSE_PRESS > 3000){
@@ -37,29 +33,28 @@ function moveImage(direction) {
     let documentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     let documentHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-
-    if (direction === 'KeyD') {
+    if (direction == 'KeyD') {
         let newValue = (leftVal + AMOUNT_TO_MOVE);
         if(newValue < documentWidth){
             imgObjStyle.left = (leftVal + AMOUNT_TO_MOVE) + "px";
         }
     }
 
-    if (direction === 'KeyA') {
+    if (direction == 'KeyA') {
         let newValue = (leftVal - AMOUNT_TO_MOVE);
         if(newValue > 0){
             imgObjStyle.left = (leftVal - AMOUNT_TO_MOVE) + "px";
         }
     }
 
-    if (direction === 'KeyW') {
+    if (direction == 'KeyW') {
         let newValue = (topVal - AMOUNT_TO_MOVE);
         if(newValue > 0){
             imgObjStyle.top = (topVal - AMOUNT_TO_MOVE) + "px";
         }
     }
 
-    if (direction === 'KeyS') {
+    if (direction == 'KeyS') {
         let newValue = (topVal + AMOUNT_TO_MOVE);
         if(newValue > 0){
             imgObjStyle.top = (topVal + AMOUNT_TO_MOVE) + "px";
@@ -72,6 +67,16 @@ function init() {
     imgObj.style.position = 'relative';
     imgObj.style.left = '0px';
     imgObj.style.top = '0px';
+
+    for (var i = 0; i < buttons.length; i++) {
+        let currentButton = buttons[i];
+        currentButton.addEventListener('mouseenter', (event) => changeToCoral(event.target));
+        currentButton.addEventListener('mouseleave', (event) => backToNormal(event.target));
+        currentButton.addEventListener('click', (event) => moveImage(event.target.code))
+        document.addEventListener('keyup', (keyup) => {
+            moveImage(new String(keyup.code));
+        });
+    }
 }
 
 
