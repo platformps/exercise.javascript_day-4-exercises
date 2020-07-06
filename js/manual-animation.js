@@ -24,23 +24,25 @@ function moveImage(direction) {
 
     if(direction === 'KeyD') {        
         imgObjStyleDirection = imgObjStyle.left;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) + 10 + 'px';
+        //imgObjStyleDirection = parseInt(imgObjStyleDirection) + 10 + 'px';
+        imgObjStyle.left = parseInt(imgObjStyleDirection) + 10 + 'px';
+        //window.alert(imgObjStyleDirection);
     }
 
     if(direction === 'KeyA') {
         imgObjStyleDirection = imgObjStyle.left;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) - 10 + 'px';
+        imgObjStyle.left = parseInt(imgObjStyleDirection) - 10 + 'px';
     }
 
     if(direction === 'KeyW') {
         imgObjStyleDirection = imgObjStyle.top;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) - 10 + 'px';
+        imgObjStyle.top = parseInt(imgObjStyleDirection) - 10 + 'px';
     }
 
     
     if(direction === 'KeyS') {
         imgObjStyleDirection = imgObjStyle.top;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) + 10 + 'px';
+        imgObjStyle.top = parseInt(imgObjStyleDirection) + 10 + 'px';
     }
 }
 
