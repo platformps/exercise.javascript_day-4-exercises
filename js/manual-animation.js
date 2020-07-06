@@ -1,9 +1,25 @@
 const buttons = document.querySelectorAll("button");
+//const buttons = document.querySelectorAll(".inputButton");
 for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
     currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
     currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', ()=> moveImage(event.target.id))
+   // currentButton.addEventListener('click', ()=> moveImage(event.target.id))
+   currentButton.addEventListener('click', function() { 
+     //direction = event.target.id;
+     direction = event.code;
+     animate = setInterval(function() { moveImage(direction);}, 60);
+    });
+    currentButton.addEventListener('mouseup', function(){clearInterval(animate);});
+    document.addEventListener('mouseup', function(){clearInterval(animate);});
+    
+    document.addEventListener('keyDown', function() { 
+        //direction = event.target.id;
+        direction = event.code;
+        animate = setInterval(function() { moveImage(direction);}, 60);
+       });
+    document.addEventListener('keyup', function(){clearInterval(animate);});
+    currentButton.addEventListener('keyup', function(){clearInterval(animate);});
 }
 
 function changeToCoral(eventTarget) {
@@ -44,6 +60,8 @@ function moveImage(direction) {
         imgObjStyleDirection = imgObjStyle.top;
         imgObjStyle.top = parseInt(imgObjStyleDirection) + 10 + 'px';
     }
+
+    //animate = setTimeout(function(){moveImage(direction)}, 20);
 }
 
 function init() {
