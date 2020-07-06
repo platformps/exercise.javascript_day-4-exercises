@@ -3,8 +3,28 @@ for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
     currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
     currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', ()=> moveImage(event.target.id))
+    currentButton.addEventListener('click', ()=> moveImage(event.target.id));
 }
+
+function checkKeydown(e){
+  //  if(e.keyCode == 13){
+    if(e.keyCode === 87) {
+        imgObj.style.top = parseInt(imgObj.style.top) - 10 + 'px';
+    }
+    
+    if(e.keyCode === 65) {
+        imgObj.style.left = parseInt(imgObj.style.left) - 10 + 'px';
+    }
+    if(e.keyCode === 68) {        
+        imgObj.style.left = parseInt(imgObj.style.left) + 10 + 'px';
+    }
+
+    if(e.keyCode === 83) {
+        imgObj.style.top = parseInt(imgObj.style.top) + 10 + 'px';
+    }
+    }
+   
+
 
 function changeToCoral(eventTarget) {
     eventTarget.style.backgroundColor = "coral";
@@ -19,28 +39,19 @@ function backToNormal(eventTarget) {
 }
 
 function moveImage(direction) {
-    let imgObjStyle = imgObj.style;
-    let imgObjStyleDirection;
-
-    if(direction === 'KeyD') {        
-        imgObjStyleDirection = imgObjStyle.left;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) + 10 + 'px';
-    }
-
-    if(direction === 'KeyA') {
-        imgObjStyleDirection = imgObjStyle.left;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) - 10 + 'px';
-    }
-
     if(direction === 'KeyW') {
-        imgObjStyleDirection = imgObjStyle.top;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) - 10 + 'px';
+        imgObj.style.top = parseInt(imgObj.style.top) - 10 + 'px';
+    }
+    
+    if(direction === 'KeyA') {
+        imgObj.style.left = parseInt(imgObj.style.left) - 10 + 'px';
+    }
+    if(direction === 'KeyD') {        
+        imgObj.style.left = parseInt(imgObj.style.left) + 10 + 'px';
     }
 
-    
     if(direction === 'KeyS') {
-        imgObjStyleDirection = imgObjStyle.top;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) + 10 + 'px';
+        imgObj.style.top = parseInt(imgObj.style.top) + 10 + 'px';
     }
 }
 
@@ -49,6 +60,7 @@ function init() {
     imgObj.style.position = 'relative';
     imgObj.style.left = '0px';
     imgObj.style.top = '0px';
+    document.addEventListener("keydown", checkKeydown);
 }
 
 
