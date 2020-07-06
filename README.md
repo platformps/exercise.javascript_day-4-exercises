@@ -1,8 +1,9 @@
-# Project Title
+# JavaScript Day 4 Exercises
 
-* **Objective** - To create a product...
-* **Purpose** - To gain familiarity the following features...
-
+* **Purpose** - To gain familiarity the following features:
+  * event-handlers
+  * automated animations
+* **Description** - Complete the exercises from today's lecture presentation. The exercises begin on [slide 47](https://docs.google.com/presentation/d/e/2PACX-1vQFm_z-Q8li6n73yTpSE0DMZFCxMuVMX7TZveEaBz4XZZDwy6UXIqHsLF4XwnhmDw/pub?start=false&loop=false&delayms=3000#slide=id.p47).
 
 
 
