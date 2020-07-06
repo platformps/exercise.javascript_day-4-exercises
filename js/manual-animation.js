@@ -1,19 +1,11 @@
 const buttons = document.querySelectorAll("button");
 for(var i=0; i<buttons.length;i++) {
-    buttons[i].addEventListener('click', function() {moveImage(event.target.id);});
-    document.addEventListener('mouseup', function() {}); 
-}
-
-function changeToCoral(eventTarget) {
-    eventTarget.style.backgroundColor = "coral";
-}
-
-function changeToWhite() {
-    eventTarget.style.backgroundColor = "white";
-}
-
-function backToNormal(eventTarget) {
-    eventTarget.style.backgroundColor='';
+    buttons[i].addEventListener('click', 
+        function() {
+            var direction = event.target.id;
+            animate = setInterval(function () {moveImage(direction); }, 60);
+        });
+    document.addEventListener('mouseup', function() {clearInterval(animate);}); 
 }
 
 function moveImage(direction) {
