@@ -1,9 +1,7 @@
 const buttons = document.querySelectorAll("button");
 for(var i=0; i<buttons.length;i++) {
-    let currentButton = buttons[i];
-    currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
-    currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', ()=> moveImage(event.target.id))
+    buttons[i].addEventListener('click', function() {moveImage(event.target.id);});
+    document.addEventListener('mouseup', function() {}); 
 }
 
 function changeToCoral(eventTarget) {
@@ -42,6 +40,8 @@ function moveImage(direction) {
         imgObjStyleDirection = imgObjStyle.top;
         imgObjStyleDirection = parseInt(imgObjStyleDirection) + 10 + 'px';
     }
+
+    animate = setTimeout(function() {moveImage(direction)}, 20);
 }
 
 function init() {
