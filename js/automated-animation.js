@@ -2,22 +2,13 @@ var animate;
 const buttons = document.querySelectorAll("button");
 for (var i = 0; i < buttons.length; i++) {
     let currentButton = buttons[i];
-    // currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
-    // currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', () => moveImage(event.target.id))
-    document.addEventListener('mouseup', function () { });
-}
 
-function changeToCoral(eventTarget) {
-    eventTarget.style.backgroundColor = "coral";
-}
+    currentButton.addEventListener('click', () => {
+        var direction = event.target.id;
+        animate = setInterval(function () { moveImage(direction); }, 60);
+    });
+    document.addEventListener('mouseup', function () { clearInterval(animate); });
 
-function changeToWhite() {
-    eventTarget.style.backgroundColor = "white";
-}
-
-function backToNormal(eventTarget) {
-    eventTarget.style.backgroundColor = '';
 }
 
 function moveImage(direction) {
@@ -41,7 +32,7 @@ function moveImage(direction) {
     if (direction === 'KeyS') {
         imgObjStyle.top = (topVal + 30) + "px";
     }
-    animate = setTimeout(function () { moveImage(direction) }, 20);
+
 }
 
 function init() {
