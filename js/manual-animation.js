@@ -3,14 +3,14 @@ for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
     currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
     currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', ()=> moveImage(event.target.id))
+    currentButton.addEventListener('click', () => moveImage(event.target.id));
 }
 
 function changeToCoral(eventTarget) {
     eventTarget.style.backgroundColor = "coral";
 }
 
-function changeToWhite() {
+function changeToWhite(eventTarget) {
     eventTarget.style.backgroundColor = "white";
 }
 
@@ -20,27 +20,23 @@ function backToNormal(eventTarget) {
 
 function moveImage(direction) {
     let imgObjStyle = imgObj.style;
-    let imgObjStyleDirection;
+   // let imgObjStyleDirection;
 
     if(direction === 'KeyD') {        
-        imgObjStyleDirection = imgObjStyle.left;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) + 10 + 'px';
+        imgObjStyle.left = parseInt(imgObjStyle.left) + 10 + 'px';
     }
 
     if(direction === 'KeyA') {
-        imgObjStyleDirection = imgObjStyle.left;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) - 10 + 'px';
+        imgObjStyle.left = parseInt(imgObjStyle.left) - 10 + 'px';
     }
 
     if(direction === 'KeyW') {
-        imgObjStyleDirection = imgObjStyle.top;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) - 10 + 'px';
+        imgObjStyle.top = parseInt(imgObjStyle.top) - 10 + 'px';
     }
 
     
     if(direction === 'KeyS') {
-        imgObjStyleDirection = imgObjStyle.top;
-        imgObjStyleDirection = parseInt(imgObjStyleDirection) + 10 + 'px';
+        imgObjStyle.top = parseInt(imgObjStyle.top) + 10 + 'px';
     }
 }
 
