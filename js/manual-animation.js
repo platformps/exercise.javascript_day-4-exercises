@@ -62,6 +62,11 @@ function moveImage(direction) {
         imgObjStyle.top = parseInt(imgObjStyleDirection) + 10 + 'px';
     }
     animate = setInterval(function() { moveImage(direction);}, 60);
+    counter += 60;
+    if (counter > 3000){
+        counter = 0;
+        clearTimeout(animate);
+    }
     //animate = setTimeout(function(){moveImage(direction)}, 20);
 }
 
