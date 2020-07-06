@@ -1,13 +1,14 @@
 const buttons = document.querySelectorAll('button');
 for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
-    currentButton.addEventListener('keydown' ,() =>{
-        changeToCoral(event.code);
-        moveImage(event.code);
-    });
-    currentButton.addEventListener('keyup' ,() =>{
-        backToNormal(event.code);
-    });
+    // currentButton.addEventListener('keydown' ,() =>{
+    //     changeToCoral(event.code);
+    //     moveImage(event.code);
+    // });
+    // currentButton.addEventListener('keyup' ,() =>{
+    //     backToNormal(event.code);
+    //     clearTimeout(event.code);
+    // });
     currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
     currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
     currentButton.addEventListener('click', () => moveImage(event.target.id))
@@ -46,7 +47,7 @@ function moveImage(direction) {
     if(direction === 'KeyS') {
         imgObjStyle.top = (topVal + 30) + "px";
     }
-    var animate = setTimeout(function(){moveImage(direction)}, 20);
+    var animate = setTimeout(function(){moveImage(direction)}, 1500);
 }
 
 function init() {
@@ -60,7 +61,8 @@ function init() {
         moveImage(event.code);
     });
     document.addEventListener('keyup', () =>{
-        backToNormal(document.getElementById(event.code))
+        backToNormal(document.getElementById(event.code));
+        clearTimeout(document.getElementById(event.code));
     });
 }
 
