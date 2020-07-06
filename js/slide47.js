@@ -10,6 +10,10 @@ for(var i=0; i<buttons.length;i++) {
     animate = setInterval(function() {moveImage(direction);}, 100);});
     document.addEventListener('mouseup', () => {clearInterval(animate);
     });
+    document.addEventListener("keydown", function() {direction = event.code;
+    animate = setInterval(function() {moveImage(direction);}, 100);});
+    document.addEventListener('mouseup', () => {clearInterval(animate);
+    });
 }
 
 function changeToCoral(eventTarget) {
