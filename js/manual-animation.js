@@ -1,9 +1,22 @@
 const buttons = document.querySelectorAll("button");
-for(var i=0; i<buttons.length;i++) {
+let animate;
+let counter = 0;
+for(let i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
     currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
     currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', ()=> moveImage(event.target.id))
+    currentButton.addEventListener('click', ()=>  {moveImage(event.target.id)
+
+    animate = setInterval(() => {
+    moveImage(currentButton.id)
+    counter+=1000
+    console.log(counter)
+    if (counter > 3000) {
+        clearInterval(animate)
+        counter = 0;
+         }
+    }, 1000);
+})
 }
 
 function changeToCoral(eventTarget) {
@@ -20,9 +33,9 @@ function backToNormal(eventTarget) {
 
 
 function moveImage(direction) {
-    var imgObjStyle = imgObj.style;
-    var topVal = parseInt(imgObjStyle.top, 10);
-    var leftVal = parseInt(imgObjStyle.left, 10);
+    let imgObjStyle = imgObj.style;
+    let topVal = parseInt(imgObjStyle.top, 10);
+    let leftVal = parseInt(imgObjStyle.left, 10);
 
     if(direction === 'KeyA') {        
         imgObjStyle.left = (leftVal - 30) + "px";
@@ -39,17 +52,13 @@ function moveImage(direction) {
     if(direction === 'KeyS') {
         imgObjStyle.top = (topVal + 30) + "px";
     }
-
-    document.addEventListener('keydown', function(e){
-        if(e.key === 'w')
-        console.log('hei w')
-     })
 }
 
+
 function keyMoves(e) {
-    var imgObjStyle = imgObj.style;
-    var topVal = parseInt(imgObjStyle.top, 10);
-    var leftVal = parseInt(imgObjStyle.left, 10);
+    let imgObjStyle = imgObj.style;
+    let topVal = parseInt(imgObjStyle.top, 10);
+    let leftVal = parseInt(imgObjStyle.left, 10);
 
     switch (e.key) {
         case 'a':
@@ -77,6 +86,7 @@ function init() {
     imgObj.style.position = 'relative';
     imgObj.style.left = '0px';
     imgObj.style.top = '0px';
+
 }
 
 
