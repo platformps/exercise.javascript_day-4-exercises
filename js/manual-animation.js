@@ -1,10 +1,11 @@
 const buttons = document.querySelectorAll("button");
 for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
-    currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
-    currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', ()=> moveImage(event.target.id));
-   
+    currentButton.addEventListener('keypress', () => changeToCoral(event.target));
+    currentButton.addEventListener('keyup', () => backToNormal(event.target));
+    currentButton.addEventListener('keydown', ()=> moveImage(event.target.id));
+
+
 }
 function changeToCoral(eventTarget) {
     eventTarget.style.backgroundColor = "coral";
