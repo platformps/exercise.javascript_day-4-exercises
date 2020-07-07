@@ -1,5 +1,7 @@
 const buttons = document.querySelectorAll("button");
 
+var animate; 
+
 for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
     currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
@@ -41,7 +43,7 @@ function moveImage(direction) {
         imgObjStyle.top = (topVal + 30) + "px";
     }
 
-    setTimeout( function() { moveImage(direction); }, 1000);
+    animate = setTimeout( function() { moveImage(direction); }, 20);
 }
 
 function init() {

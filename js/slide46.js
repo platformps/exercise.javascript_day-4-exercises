@@ -8,8 +8,10 @@ for(var i=0; i<buttons.length;i++) {
       var direction = event.target.id;
       animate = setInterval( function() {moveImage(direction); }, 60);
     });
-    document.addEventListener('mouseup', function() { clearInterval(animate);});
+    //document.addEventListener('mouseup', function() { clearInterval(animate);});
 }
+
+document.addEventListener('mouseup', function() { clearInterval(animate);});
 
 function moveImage(direction) {
     let imgObjStyle = imgObj.style;

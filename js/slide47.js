@@ -1,6 +1,6 @@
 const buttons = document.querySelectorAll("button");
-var animate;
 
+var animate;
 for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
     currentButton.addEventListener('click', () =>
@@ -8,30 +8,45 @@ for(var i=0; i<buttons.length;i++) {
       var direction = event.target.id;
       animate = setInterval( function() {moveImage(direction); }, 60);
     });
-    document.addEventListener('mouseup', function() { clearInterval(animate);});
+    //document.addEventListener('mouseup', function() { clearInterval(animate);});
 }
 
-document.onkeydown = checkKeycode;
-var keyPressed;
-function checkKeycode(e) {
-  var keycode;
-  if (window.event)
-    {keycode = window.event.keyCode;}
-  else if (e)
-    {keycode = e.which;}
-  
-  if(keycode = 39) {
-    animate = setInterval (function() {moveImage2(keycode); }, 60);
+document.addEventListener('mouseup', function() { clearInterval(animate);});
+
+
+var keycode;
+document.addEventListener('keydown', function(e) {
+
+  if (window.event) {
+    keycode = window.event.keyCode;
+    console.log(keycode);
   }
-}
+  else if (e) {
+    keycode = e.which;
+  }
+  clearInterval(animate);
+  animate = setInterval (function() {moveImage2(keycode); }, 60);
+});
 
-function moveImage2(keyCode) {
-  let imgObjStyle = imgObj.style;
-  //let topVal = parseInt(imgObjStyle.top, 10);
-  let leftVal = parseInt(imgObjStyle.left, 10);
+function moveImage2(keycode) {
+    let imgObjStyle = imgObj.style;
+    let topVal = parseInt(imgObjStyle.top, 10);
+    let leftVal = parseInt(imgObjStyle.left, 10);
 
-  if(direction === 'KeyA') {
-      imgObjStyle.left = (leftVal - 30) + "px";
+    if(keycode == 37) { //left arrow
+        imgObjStyle.left = (leftVal - 30) + "px";
+    } 
+
+    if(keycode == 38) { //up arrow
+        imgObjStyle.top = (topVal - 30) + "px";
+    }
+
+    if(keycode == 39) { //right arrow     
+        imgObjStyle.left = (leftVal + 30) + "px";
+    }
+    
+    if(keycode == 40 ) { //down arrow
+        imgObjStyle.top = (topVal + 30) + "px";
     }
 } 
 
