@@ -58,7 +58,7 @@ document.addEventListener('keydown',(event)=>{
             break;
         }
         case 87: {
-            moveImage('keyW')   //up
+            moveImage('KeyW')   //up
             break;
         }
         case 83: {
