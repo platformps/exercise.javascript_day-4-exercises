@@ -7,25 +7,19 @@ for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
     currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
     currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', function(){direction = event.target.id;
-        animate = setInterval(function() {moveImage(direction);}, 100);});
-        document.addEventListener('mouseup', () => {clearInterval(animate);
-        });
-    // currentButton.addEventListener('click', function(){direction = event.target.id;
-            
-    //     animate = setInterval(function() {moveImage(direction);}, 60);
-    //          document.addEventListener('mouseup', () => {clearInterval(animate);});
-    //         stopTimer =  setTimeout(function(){clearInterval(animate);}, 3000);
-    //         // clearTimeout(stopTimer);
-           
-    //     });
-   
-        document.addEventListener("keydown", function() {direction = event.code;
-    
+    currentButton.addEventListener('click', function(){
+        direction = event.target.id;
+        animate = setInterval(function() {moveImage(direction);}, 60);
+    });
+        setTimeout(function(){ clearInterval(animate);}, 3000);
+        document.addEventListener('mouseup', () => {clearInterval(animate);});
+        
+        document.addEventListener("keydown", function() {
+            direction = event.code;
             animate = setInterval(function() {moveImage(direction);}, 60);
             stopTimer = setTimeout(function(){clearInterval(animate);}, 3000);
-        
         });
+      
         clearTimeout(stopTimer);
         break;
 }
