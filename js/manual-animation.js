@@ -1,5 +1,6 @@
 const buttons = document.querySelectorAll("button");
 var animate;
+var time=0;
 for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
     currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));    //changes to coral with function
@@ -21,6 +22,7 @@ function backToNormal(eventTarget) {
 
 function moveImage(direction) {
     clearTimeout(animate);
+    // clearTimeout(time)
     let imgObjStyle = imgObj.style;
     let topVal = parseInt(imgObjStyle.top, 10);
     let leftVal = parseInt(imgObjStyle.left, 10);
@@ -41,24 +43,26 @@ function moveImage(direction) {
     if(direction === 'KeyS') {
         imgObjStyle.top = (topVal + 30) + "px";
     }
-    animate=setTimeout(function(){moveImage(direction)},20);
+    animate=setTimeout(function(){time += 10;moveImage(direction);
+        if(time>100){clearTimeout(animate);time=0;}},200);
 }
+document.addEventListener('mouseup',()=>{clearTimeout(animate);})
 document.addEventListener('keydown',(event)=>{
     switch(event.keyCode){
         case 65:{
-            moveImage('KeyA')
+            moveImage('KeyA')   ///left
             break;
         }
         case 68:{
-            moveImage('KeyD')
+            moveImage('KeyD')   //right
             break;
         }
         case 87: {
-            moveImage('keyW')
+            moveImage('keyW')   //up
             break;
         }
         case 83: {
-            moveImage("KeyS")
+            moveImage("KeyS")   //down
             break;
         }
 
@@ -70,9 +74,7 @@ function init() {
     imgObj.style.position = 'relative';
     imgObj.style.left = '0px';
     imgObj.style.top = '0px';
-    //document.addEventListener('keydown',moveImage(event.target.id))
-    // document.addEventListener('keydown',moveImage(event.target.id))
-    // document.addEventListener('keyup',moveImage(event.target.id))
+
 }
 
 
