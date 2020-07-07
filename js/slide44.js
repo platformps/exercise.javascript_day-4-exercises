@@ -1,4 +1,5 @@
 const buttons = document.querySelectorAll("button");
+
 for(var i=0; i<buttons.length;i++) {
     let currentButton = buttons[i];
     currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
@@ -34,7 +35,6 @@ function moveImage(direction) {
     if(direction === 'KeyD') {        
         imgObjStyle.left = (leftVal + 30) + "px";
     }
-
     
     if(direction === 'KeyS') {
         imgObjStyle.top = (topVal + 30) + "px";
