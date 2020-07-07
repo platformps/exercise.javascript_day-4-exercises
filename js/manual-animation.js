@@ -1,52 +1,58 @@
+init();
+
+var imgObj;
+var animate;
+var directions;
+
 const buttons = document.querySelectorAll("button");
-for(var i=0; i<buttons.length;i++) {
-    let currentButton = buttons[i];
-    currentButton.addEventListener('mouseenter', () => changeToCoral(event.target));
-    currentButton.addEventListener('mouseleave', () => backToNormal(event.target));
-    currentButton.addEventListener('click', ()=> moveImage(event.target.id))
+for (var i = 0; i < buttons.length; i++) {
+  let currentButton = buttons[i];
+
+  currentButton.addEventListener("click", function() {
+    var direction = event.target.id;
+    animate = setInterval(function() {
+      moveImage(direction);
+    }, 60);
+  });
+  setInterval(function() {
+    clearInterval(animate);
+  }, 3000);
 }
 
-function changeToCoral(eventTarget) {
-    eventTarget.style.backgroundColor = "coral";
-}
+document.addEventListener("mouseup", function() {
+  clearInterval(animate);
+});
 
-function changeToWhite() {
-    eventTarget.style.backgroundColor = "white";
-}
-
-function backToNormal(eventTarget) {
-    eventTarget.style.backgroundColor='';
-}
+document.addEventListener("keypress", function() {
+  direction = event.code;
+  moveImage(direction);
+});
 
 function moveImage(direction) {
-    let imgObjStyle = imgObj.style;
-    let topVal = parseInt(imgObjStyle.top, 10);
-    let leftVal = parseInt(imgObjStyle.left, 10);
+  let imgObjStyle = imgObj.style;
+  let topVal = parseInt(imgObjStyle.top, 10);
+  let leftVal = parseInt(imgObjStyle.left, 10);
 
-    if(direction === 'KeyA') {
-        imgObjStyle.left = (leftVal - 30) + "px";
-    } 
+  if (direction === "KeyA") {
+    imgObjStyle.left = leftVal - 10 + "px";
+  }
 
-    if(direction === 'KeyW') {
-        imgObjStyle.top = (topVal - 30) + "px";
-    }
+  if (direction === "KeyW") {
+    imgObjStyle.top = topVal - 10 + "px";
+  }
 
-    if(direction === 'KeyD') {        
-        imgObjStyle.left = (leftVal + 30) + "px";
-    }
+  if (direction === "KeyD") {
+    imgObjStyle.left = leftVal + 10 + "px";
+  }
 
-    
-    if(direction === 'KeyS') {
-        imgObjStyle.top = (topVal + 30) + "px";
-    }
+  if (direction === "KeyS") {
+    imgObjStyle.top = topVal + 10 + "px";
+  }
 }
 
 function init() {
-    imgObj = document.getElementById('myImage');
-    imgObj.style.position = 'relative';
-    imgObj.style.left = '0px';
-    imgObj.style.top = '0px';
+  imgObj = document.getElementById("myImage");
+  imgObj.style.position = "relative";
+  imgObj.style.left = "0px";
+  imgObj.style.top = "0px";
 }
-
-
-window.onload = init;
